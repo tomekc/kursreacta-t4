@@ -29,3 +29,5 @@ export function PomodoroConfig(props) {
         </div>
     );
 }
+
+export default PomodoroConfig;
