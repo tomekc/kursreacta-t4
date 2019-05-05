@@ -1,5 +1,6 @@
 import React from "react";
-import { sprintf } from "sprintf-js"
+import { sprintf } from "sprintf-js";
+import classNames from 'classnames';
 
 export class CurrentTimebox extends React.Component {
     constructor(props) {
@@ -76,7 +77,7 @@ export class CurrentTimebox extends React.Component {
             <div className={`CurrentTimebox ${isEditable ? "inactive" : ""}`}>
                 <h1>{title}</h1>
                 <Clock minutes={minutesLeft} seconds={secondsLeft} />
-                <ProgressBar percent={progress} />
+                <ProgressBar percent={progress} big="true"/>
                 <div>
                     <button onClick={this.onStart} disabled={running}>
                         Start
@@ -100,10 +101,15 @@ export function Clock({ className = "", minutes = 0, seconds = 0 }) {
     return <h2 className="Clock">zostało {tekst}</h2>;
 }
 
-export function ProgressBar({ percent = 33 }) {
+export function ProgressBar({ percent = 33, big = false }) {
+
+    const pgbar = classNames('progress__bar', {
+        'progress__bar--big': big
+    });
+
     return (
         <div className="progress">
-            <div className="progress__bar" style={{ width: `${percent}%` }} />
+            <div className={pgbar} style={{ width: `${percent}%` }} />
         </div>
     );
 }
