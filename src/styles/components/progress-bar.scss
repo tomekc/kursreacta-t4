@@ -1,7 +1,9 @@
-.ProgressBar {
+$height: 50px;
+
+.progress {
     border: 1px solid red;
     background-color: white;
-    height: 30px;
+    height: $height;
     margin-bottom: 1em;
     padding: 4px;
     width: 60%;
@@ -9,9 +11,7 @@
     margin-right: auto;
 }
 
-.ProgressBar {
-    div {
+.progress__bar {
         background-color: red;
-        height: 30px;
-    }
+        height: $height;
 }

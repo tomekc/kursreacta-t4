@@ -102,8 +102,8 @@ export function Clock({ className = "", minutes = 0, seconds = 0 }) {
 
 export function ProgressBar({ percent = 33 }) {
     return (
-        <div className="ProgressBar">
-            <div style={{ width: `${percent}%` }} />
+        <div className="progress">
+            <div className="progress__bar" style={{ width: `${percent}%` }} />
         </div>
     );
 }
