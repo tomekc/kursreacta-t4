@@ -1,5 +1,5 @@
 import React from "react";
-import sprintf from "sprintf-js"
+import { sprintf } from "sprintf-js"
 
 export class CurrentTimebox extends React.Component {
     constructor(props) {
