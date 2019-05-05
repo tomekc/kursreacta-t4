@@ -4,7 +4,7 @@ import { TimeboxList } from "./TimeboxList"
 import { CurrentTimebox } from "./CurrentTimebox";
 import PomodoroConfig from "./PomodoroConfig"
 
-import './main.scss'
+import './styles/main.scss'
 
 // Pojemnik na stan
 class PomidorApp extends React.Component {
