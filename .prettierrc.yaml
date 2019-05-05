@@ -1,0 +1,5 @@
+printWidth: 125
+jsxBracketSameLine: true
+tabWidth: 4
+useTabs: false
+arrowParens: always
