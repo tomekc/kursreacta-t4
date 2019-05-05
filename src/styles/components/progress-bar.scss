@@ -1,0 +1,17 @@
+.ProgressBar {
+    border: 1px solid red;
+    background-color: white;
+    height: 30px;
+    margin-bottom: 1em;
+    padding: 4px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ProgressBar {
+    div {
+        background-color: red;
+        height: 30px;
+    }
+}
