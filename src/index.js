@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { TimeboxList } from "./timebox_list"
-import { CurrentTimebox } from "./current_timebox";
-import PomodoroConfig from "./pomodoro_config"
+import { TimeboxList } from "./TimeboxList"
+import { CurrentTimebox } from "./CurrentTimebox";
+import PomodoroConfig from "./PomodoroConfig"
 
 // Pojemnik na stan
 class PomidorApp extends React.Component {

@@ -1,43 +1,7 @@
 import React from "react";
-import uuidv4 from "./utils"
+import uuidv4 from "./utils";
 
-export class PomodoroCreator extends React.Component {
-    constructor(props) {
-        super(props);
-        // Referencje do pól formularza
-        this.titleInput = React.createRef();
-        this.minutesInput = React.createRef();
-    }
-
-    handleSubmit = (event) => {
-        console.log("Dodajemy:", this.titleInput.current.value);
-        event.preventDefault(); // aby się formularz nie zasubmitował
-        this.props.onCreate({
-            title: this.titleInput.current.value,
-            totalTimeMinutes: this.minutesInput.current.value
-        });
-    };
-
-    render() {
-        return (
-            <form onSubmit={this.handleSubmit} className="TimeboxCreator">
-                <div>
-                    <label>
-                        Co robisz? <input ref={this.titleInput} type="text" />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Ile minut? <input ref={this.minutesInput} type="number" />
-                    </label>
-                </div>
-                <div>
-                    <button>Utwórz</button>
-                </div>
-            </form>
-        );
-    }
-}
+import PomodoroCreator from "./PomodoroCreator";
 
 export class Timebox extends React.Component {
     constructor(props) {
