@@ -16,6 +16,10 @@ export class CurrentTimebox extends React.Component {
         this.onPause = this.onPause.bind(this);
     }
 
+    componentWillUnmount() {
+        console.count('current-timebox unmount')
+    }
+
     onStart() {
         console.log("START", this.state);
         this.setState({
@@ -65,7 +69,7 @@ export class CurrentTimebox extends React.Component {
 
     render() {
         const { running, paused, pausesCount, elapsedSeconds } = this.state;
-        const { title, totalTimeMinutes, onEdit, isEditable } = this.props;
+        const { title, totalTimeMinutes, onEdit, isEditable, visible } = this.props;
         const totalTimeSeconds = totalTimeMinutes * 60;
         const totalSecondsLeft = totalTimeSeconds - elapsedSeconds;
 
@@ -73,6 +77,11 @@ export class CurrentTimebox extends React.Component {
         const secondsLeft = Math.floor(totalSecondsLeft % 60);
 
         const progress = (elapsedSeconds / totalTimeSeconds) * 100.0;
+
+        if (!visible) {
+            return null;
+        }
+
         return (
             <div className={`CurrentTimebox ${isEditable ? "inactive" : ""}`}>
                 <h1>{title}</h1>

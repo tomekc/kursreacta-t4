@@ -7,8 +7,13 @@ export function PomodoroConfig(props) {
         onTitleChange,
         onTimeChange,
         isEditable, // mozna edytowc
-        onConfirm // kiedy klikniemy zatwierdzenie
+        onConfirm, // kiedy klikniemy zatwierdzenie
+        visible
     } = props;
+
+    if (!visible) {
+        return null;
+    }
 
     return (
         <div className={`TimeboxEditor ${isEditable ? "" : "inactive"}`}>

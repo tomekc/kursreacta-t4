@@ -35,6 +35,7 @@ class PomidorApp extends React.Component {
         const { title, totalTimeMinutes, isEditable } = this.state;
         return (
             <React.Fragment>
+                <TimeboxList />
                 <PomodoroConfig
                     title={title}
                     totalTimeMinutes={totalTimeMinutes}
@@ -42,13 +43,14 @@ class PomidorApp extends React.Component {
                     onTimeChange={this.onTimeChange}
                     isEditable={isEditable}
                     onConfirm={this.onConfirm}
+                    visible={isEditable}
                 />
-                <TimeboxList />
                 <CurrentTimebox
                     title={title}
                     totalTimeMinutes={totalTimeMinutes}
                     onEdit={this.onEdit}
                     isEditable={isEditable}
+                    visible={!isEditable}
                 />
             </React.Fragment>
         );
