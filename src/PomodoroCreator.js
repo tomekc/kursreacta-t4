@@ -20,6 +20,7 @@ export class PomodoroCreator extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit} className="TimeboxCreator">
+                <div>Tworzenie pomidora</div>
                 <div>
                     <label>
                         Co robisz? <input ref={this.titleInput} type="text" />
