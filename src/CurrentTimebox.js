@@ -1,9 +1,9 @@
 import React from "react";
 import { sprintf } from "sprintf-js";
-import classNames from 'classnames';
+import classNames from "classnames";
 
 export class CurrentTimebox extends React.Component {
-    constructor(props) {        
+    constructor(props) {
         super(props);
         this.state = {
             running: false,
@@ -14,15 +14,16 @@ export class CurrentTimebox extends React.Component {
         this.onStart = this.onStart.bind(this);
         this.onStop = this.onStop.bind(this);
         this.onPause = this.onPause.bind(this);
-        console.log('[Timebox] construct');
+        this.interval = null;
+        console.log("[Timebox] construct");
     }
 
     componentWillUnmount() {
-        console.count('current-timebox unmount')
+        console.count("current-timebox unmount");
     }
 
     componentDidMount() {
-        console.count('current-timebox mount')
+        console.count("current-timebox mount");
     }
 
     onStart() {
@@ -60,21 +61,23 @@ export class CurrentTimebox extends React.Component {
     }
 
     startTimer() {
-        if (this.interval) {
-            this.stopTimer();
+        if (this.interval === null) {
+            this.interval = window.setInterval(() => {
+                this.setState((prevState) => ({
+                    // Nawiasy zeby kompilator Babela nie zgupial
+                    elapsedSeconds: prevState.elapsedSeconds + 0.5
+                }));
+            }, 500);
+            console.log("Started timer, interval ID=", this.interval);
+        } else {
+            console.log('Timer did not start, already running',this.interval);
         }
-        this.interval = window.setInterval(() => {
-            this.setState((prevState) => ({
-                // Nawiasy zeby kompilator Babela nie zgupial
-                elapsedSeconds: prevState.elapsedSeconds + 0.5
-            }));
-        }, 500);
-        console.log('Started timer, interval ID=', this.interval);
     }
 
     stopTimer() {
-        console.log('Stopping timer ID=', this.interval);
+        console.log("Stopping timer ID=", this.interval);
         window.clearInterval(this.interval);
+        this.interval = null;
     }
 
     render() {
@@ -98,7 +101,7 @@ export class CurrentTimebox extends React.Component {
             <div className={`CurrentTimebox ${isEditable ? "inactive" : ""}`}>
                 <h1>{title}</h1>
                 <Clock minutes={minutesLeft} seconds={secondsLeft} />
-                <ProgressBar percent={progress} big="true"/>
+                <ProgressBar percent={progress} big="true" />
                 <div>
                     <button onClick={this.onStart} disabled={running}>
                         Start
@@ -123,9 +126,8 @@ export function Clock({ className = "", minutes = 0, seconds = 0 }) {
 }
 
 export function ProgressBar({ percent = 33, big = false }) {
-
-    const pgbar = classNames('progress__bar', {
-        'progress__bar--big': big
+    const pgbar = classNames("progress__bar", {
+        "progress__bar--big": big
     });
 
     return (
@@ -134,4 +136,3 @@ export function ProgressBar({ percent = 33, big = false }) {
         </div>
     );
 }
-
