@@ -3,7 +3,7 @@ import { sprintf } from "sprintf-js";
 import classNames from 'classnames';
 
 export class CurrentTimebox extends React.Component {
-    constructor(props) {
+    constructor(props) {        
         super(props);
         this.state = {
             running: false,
@@ -14,10 +14,15 @@ export class CurrentTimebox extends React.Component {
         this.onStart = this.onStart.bind(this);
         this.onStop = this.onStop.bind(this);
         this.onPause = this.onPause.bind(this);
+        console.log('[Timebox] construct');
     }
 
     componentWillUnmount() {
         console.count('current-timebox unmount')
+    }
+
+    componentDidMount() {
+        console.count('current-timebox mount')
     }
 
     onStart() {
@@ -55,15 +60,20 @@ export class CurrentTimebox extends React.Component {
     }
 
     startTimer() {
+        if (this.interval) {
+            this.stopTimer();
+        }
         this.interval = window.setInterval(() => {
             this.setState((prevState) => ({
                 // Nawiasy zeby kompilator Babela nie zgupial
                 elapsedSeconds: prevState.elapsedSeconds + 0.5
             }));
         }, 500);
+        console.log('Started timer, interval ID=', this.interval);
     }
 
     stopTimer() {
+        console.log('Stopping timer ID=', this.interval);
         window.clearInterval(this.interval);
     }
 
@@ -77,6 +87,8 @@ export class CurrentTimebox extends React.Component {
         const secondsLeft = Math.floor(totalSecondsLeft % 60);
 
         const progress = (elapsedSeconds / totalTimeSeconds) * 100.0;
+
+        // console.log('[Timebox] render');
 
         if (!visible) {
             return null;
